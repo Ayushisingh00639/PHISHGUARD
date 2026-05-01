@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PhishGuard</title>
+</head>
+<body>
+
+<h1>PhishGuard System</h1>
+
+<!-- EMAIL SECTION -->
+<h2>Email Scanner</h2>
+<form method="POST">
+    Subject: <input type="text" name="subject"><br><br>
+    Body: <textarea name="body"></textarea><br><br>
+    Sender: <input type="text" name="sender"><br><br>
+    <button type="submit" name="email_submit">Scan Email</button>
+</form>
+
+{% if email_result %}
+<h3>Email Result</h3>
+<p>Score: {{ email_result.score }}</p>
+<p>ML: {{ email_result.ml }}</p>
+<ul>
+{% for r in email_result.reasons %}
+<li>{{ r }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+<hr>
+
+<!-- URL SECTION -->
+<h2>URL Scanner</h2>
+<form method="POST">
+    URL: <input type="text" name="url"><br><br>
+    <button type="submit" name="url_submit">Scan URL</button>
+</form>
+
+{% if url_result %}
+<h3>URL Result</h3>
+<p>Score: {{ url_result.score }}</p>
+<p>ML: {{ url_result.ml }}</p>
+<ul>
+{% for r in url_result.reasons %}
+<li>{{ r }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+</body>
+</html>
